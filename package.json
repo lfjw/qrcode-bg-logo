@@ -1,0 +1,14 @@
+{
+  "name": "qrcode-bg-logo",
+  "version": "1.0.7",
+  "description": "a picture QR code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
