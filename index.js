@@ -6,6 +6,17 @@ import {
 }
 from "./qrcode-bg-logo";
 
+function download({
+  el,
+  pictureName,
+}) {
+  downloadQrcode({
+    jQuery: $,
+    el: el,
+    pictureName: pictureName,
+  })
+}
+
 function qrcodeLogo({
   el,
   text,
@@ -31,6 +42,6 @@ function qrcodeLogo({
   });
 }
 export default {
-  downloadQrcode,
+  download,
   qrcodeLogo,
 };

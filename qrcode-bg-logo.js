@@ -2,20 +2,21 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
-    (global.Vue = factory());
+      (global.Vue = factory());
 }(this, (function () {
   'use strict';
   function downloadQrcode({
+    jQuery,
     el,
     pictureName,
   }) {
-    var canvas = el.find("canvas").get(0);
+    var canvas = jQuery(el).find("canvas").get(0);
     var url = canvas.toDataURL("image/png");
     downloadFile(pictureName, url);
   }
   function downloadFile(fileName, content) {
     var aLink = document.createElement("a");
-    var blob = base64ToBlob(content); 
+    var blob = base64ToBlob(content);
     var evt = document.createEvent("HTMLEvents");
     evt.initEvent("click", true, true);
     aLink.download = fileName;
@@ -78,59 +79,59 @@
 
     var QRMode, QRErrorCorrectLevel, QRMaskPattern, QRUtil, QRMath, i;
     for (function (a) {
-        a.fn.qrcode = function (b) {
-          var c, d;
-          return "string" == typeof b && (b = {
-            text: b
-          }), b = a.extend({}, {
-            render: "canvas",
-            width: 256,
-            height: 256,
-            imgWidth: b.width / 2.5,
-            imgHeight: b.height / 2.5,
-            typeNumber: -1,
-            correctLevel: QRErrorCorrectLevel.H,
-            background: "#ffffff",
-            foreground: "#000000"
-          }, b), c = function () {
-            var c, d, e, f, g, h, i, j, k, a = new QRCode(b.typeNumber, b.correctLevel);
-            for (
-              a.addData(b.text),
-              a.make(),
-              c = document.createElement("canvas"),
-              c.width = b.width,
-              c.height = b.height,
-              d = c.getContext("2d"),
-              b.src && (
-                e = new Image(),
-                e.src = b.src,
+      a.fn.qrcode = function (b) {
+        var c, d;
+        return "string" == typeof b && (b = {
+          text: b
+        }), b = a.extend({}, {
+          render: "canvas",
+          width: 256,
+          height: 256,
+          imgWidth: b.width / 2.5,
+          imgHeight: b.height / 2.5,
+          typeNumber: -1,
+          correctLevel: QRErrorCorrectLevel.H,
+          background: "#ffffff",
+          foreground: "#000000"
+        }, b), c = function () {
+          var c, d, e, f, g, h, i, j, k, a = new QRCode(b.typeNumber, b.correctLevel);
+          for (
+            a.addData(b.text),
+            a.make(),
+            c = document.createElement("canvas"),
+            c.width = b.width,
+            c.height = b.height,
+            d = c.getContext("2d"),
+            b.src && (
+              e = new Image(),
+              e.src = b.src,
 
-                e.setAttribute("crossOrigin", 'Anonymous'),
-                e.onload = function () {
-                  d.fillStyle = "#ffffff";
-                  d.fillRect((b.width - b.imgWidth) / 2 - (b.imgWidth / 5) / 2, (b.height - b.imgHeight) / 2 - (b.imgHeight / 5) / 2, b.imgWidth + b.imgWidth / 5, b.imgHeight + b.imgHeight / 5);
-                  d.drawImage(e, (b.width - b.imgWidth) / 2, (b.height - b.imgHeight) / 2, b.imgWidth, b.imgHeight)
-                }), f = b.width / a.getModuleCount(), g = b.height / a.getModuleCount(), h = 0; h < a.getModuleCount(); h++) {
-              for (i = 0; i < a.getModuleCount(); i++) {
-                d.fillStyle = a.isDark(h, i) ? b.foreground : b.background, j = Math.ceil((i + 1) * f) - Math.floor(i * f), k = Math.ceil((h + 1) * f) - Math.floor(h * f), d.fillRect(Math.round(i * f), Math.round(h * g), j, k)
-              }
+              e.setAttribute("crossOrigin", 'Anonymous'),
+              e.onload = function () {
+                d.fillStyle = "#ffffff";
+                d.fillRect((b.width - b.imgWidth) / 2 - (b.imgWidth / 5) / 2, (b.height - b.imgHeight) / 2 - (b.imgHeight / 5) / 2, b.imgWidth + b.imgWidth / 5, b.imgHeight + b.imgHeight / 5);
+                d.drawImage(e, (b.width - b.imgWidth) / 2, (b.height - b.imgHeight) / 2, b.imgWidth, b.imgHeight)
+              }), f = b.width / a.getModuleCount(), g = b.height / a.getModuleCount(), h = 0; h < a.getModuleCount(); h++) {
+            for (i = 0; i < a.getModuleCount(); i++) {
+              d.fillStyle = a.isDark(h, i) ? b.foreground : b.background, j = Math.ceil((i + 1) * f) - Math.floor(i * f), k = Math.ceil((h + 1) * f) - Math.floor(h * f), d.fillRect(Math.round(i * f), Math.round(h * g), j, k)
             }
-            return c
-          }, d = function () {
-            var d, e, f, g, h, i, c = new QRCode(b.typeNumber, b.correctLevel);
-            for (c.addData(b.text), c.make(), d = a("<table></table>").css("width", b.width + "px").css("height", b.height + "px").css("border", "0px").css("border-collapse", "collapse").css("background-color", b.background), e = b.width / c.getModuleCount(), f = b.height / c.getModuleCount(), g = 0; g < c.getModuleCount(); g++) {
-              for (h = a("<tr></tr>").css("height", f + "px").appendTo(d), i = 0; i < c.getModuleCount(); i++) {
-                a("<td></td>").css("width", e + "px").css("background-color", c.isDark(g, i) ? b.foreground : b.background).appendTo(h)
-              }
+          }
+          return c
+        }, d = function () {
+          var d, e, f, g, h, i, c = new QRCode(b.typeNumber, b.correctLevel);
+          for (c.addData(b.text), c.make(), d = a("<table></table>").css("width", b.width + "px").css("height", b.height + "px").css("border", "0px").css("border-collapse", "collapse").css("background-color", b.background), e = b.width / c.getModuleCount(), f = b.height / c.getModuleCount(), g = 0; g < c.getModuleCount(); g++) {
+            for (h = a("<tr></tr>").css("height", f + "px").appendTo(d), i = 0; i < c.getModuleCount(); i++) {
+              a("<td></td>").css("width", e + "px").css("background-color", c.isDark(g, i) ? b.foreground : b.background).appendTo(h)
             }
-            return d
-          }, this.each(function () {
-            var e = "canvas" == b.render ? c() : d();
-            a(e).appendTo(this)
-          })
-        }
+          }
+          return d
+        }, this.each(function () {
+          var e = "canvas" == b.render ? c() : d();
+          a(e).appendTo(this)
+        })
+      }
 
-      }(jQuery),
+    }(jQuery),
 
       QR8bitByte.prototype = {
         getLength: function () {
@@ -259,9 +260,9 @@
             e = 7,
             f = 0;
           for (g = this.moduleCount - 1; g > 0; g -= 2) {
-            for (6 == g && g--;;) {
+            for (6 == g && g--; ;) {
               for (h = 0; 2 > h; h++) {
-                null == this.modules[d][g - h] && (i = !1, f < a.length && (i = 1 == (1 & a[f] >>> e)), j = QRUtil.getMask(b, d, g - h), j && (i = !i), this.modules[d][g - h] = i, e--, -1 == e && (f++, e = 7))
+                null == this.modules[d][g - h] && (i = !1, f < a.length && (i = 1 == (1 & a[f] >>> e)), j = QRUtil.getMask(b, d, g - h), j && (i = !i), this.modules[d][g - h] = i, e-- , -1 == e && (f++ , e = 7))
               }
               if (d += c, 0 > d || this.moduleCount <= d) {
                 d -= c, c = -c;
@@ -285,7 +286,7 @@
         for (e.getLengthInBits() + 4 <= 8 * h && e.put(0, 4); 0 != e.getLengthInBits() % 8;) {
           e.putBit(!1)
         }
-        for (;;) {
+        for (; ;) {
           if (e.getLengthInBits() >= 8 * h) {
             break
           }
@@ -402,7 +403,7 @@
         },
         getBCHDigit: function (a) {
           for (var b = 0; 0 != a;) {
-            b++, a >>>= 1
+            b++ , a >>>= 1
           }
           return b
         },
@@ -502,7 +503,7 @@
           }
           for (d = 0; b - 1 > d; d++) {
             for (e = 0; b - 1 > e; e++) {
-              j = 0, a.isDark(d, e) && j++, a.isDark(d + 1, e) && j++, a.isDark(d, e + 1) && j++, a.isDark(d + 1, e + 1) && j++, (0 == j || 4 == j) && (c += 3)
+              j = 0, a.isDark(d, e) && j++ , a.isDark(d + 1, e) && j++ , a.isDark(d, e + 1) && j++ , a.isDark(d + 1, e + 1) && j++ , (0 == j || 4 == j) && (c += 3)
             }
           }
           for (d = 0; b > d; d++) {

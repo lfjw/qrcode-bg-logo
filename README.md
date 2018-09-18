@@ -14,6 +14,17 @@
 
 ## 使用
 
+### CommonJS
+
+```js
+import qrcode from "qrcode-bg-logo"
+//生成
+qrcode.qrcodeLogo()
+//下载
+qrcode.download() 
+```
+
+
 ```html
 <div id='canvas'></div>
 <div @click='downloadFile'>下载</div>
@@ -22,29 +33,23 @@
 ```javascript
 import qrcode from "qrcode-bg-logo";
 
-data() {
-  return {
-    el: '',
-  };
-},
-
 methods:{
   downloadFile() {
-    qrcode.downloadQrcode({
-      el:this.el,
+    qrcode.download({
+      el:"#canvas",
       pictureName: 'qrcode' //保存为图片名称
     })
   }
-},
+}
 mounted() {
-  this.el = qrcode.toQrcode({
+  qrcode.qrcodeLogo({
 	  el: "#canvas", //id名或class名
 	  text: "https://www.baidu.com", //域名
 	  width: 200,
 	  height: 200,
 	  background: "#ffffff", //二维码的后景色
 	  foreground: "#000000", //二维码的前景色
-	  src:'', //图片路径
+	  src:'http://img1.imgtn.bdimg.com/it/u=3386592165,3716246810&fm=200&gp=0.jpg', //图片路径
 	  imgWidth: 50, //图片宽度
 	  imgHeight: 50, //图片高度
   });
